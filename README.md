@@ -38,7 +38,12 @@ Or install it yourself as:
     $ gem install texture
 
 execute:
-    $ bundle exec jekyll server
+
+```
+$ bundle exec jekyll server
+```
+
+
 
 ## Usage
 
