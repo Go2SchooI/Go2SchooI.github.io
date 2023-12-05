@@ -7,6 +7,24 @@ math: true
 
 Based on the overall needs and design performance index requirements of the cable-driven manipulator, the joints are assigned as shoulder, elbow and wrist. The shoulder and wrist joints include 3-DOF in pitch, yaw, and rotation, and the elbow joint is responsible for 1-DOF in pitch, and the shoulder, elbow, and wrist joints are connected with each other to form the overall arm.
 
+
+
+## Elbow Mechanism
+
+### Paper
+
+[1] Anthropomorphic Low-Inertia High-Stiffness Manipulator for High-Speed Safe Interaction
+
+[2] 绳驱七自由度仿人机械臂设计及其运动控制方法研究
+
+### Concept
+
+refer to Wrist Mechanism
+
+### Detail
+
+
+
 ## Wrist Mechanism
 
 ### Paper
@@ -73,6 +91,47 @@ r(\psi)=\frac{h_o+\sqrt{\left.h_o{ }^2+\left(1+\left(\frac{w_c}{h_c}\right)^2 \t
 $$
 
 Set *ho*, *wc* and *hc*, if the 𝑟 remains a near constant, it can be considered that it can approximate the rolling motion between two circles.
+
+wc = 30; lc = 85.75; ho = 4.84, Calculations using matlab:
+
+```matlab
+wc = 30;
+lc = 85.75;
+ho = 4.84;
+hc = (lc * lc - wc * wc) ^ 0.5;
+
+N = 1000;
+phi = zeros(1,N);
+r = zeros(1,N);
+numerator = zeros(1,N);
+denominator = zeros(1,N);
+value1 = zeros(1,N);
+value2 = zeros(1,N);
+value3 = zeros(1,N);
+
+for k = 1:N
+     phi(k) = k * 45 / N;
+%     value1 = ho * ho;
+%     value2 = 1 + wc * wc / hc / hc * tan(phi(k)) * tan(phi(k));
+%     value3 = wc * wc / 4 - ho * ho;
+%     numerator = (value1 + value2 * value3)^0.5 + ho;
+% %     numerator = ho + (ho * ho + (1 + wc * wc / hc / hc * tan(phi(k)) * tan(phi(k))) * (wc * wc / 4 - ho * ho))^0.5;
+%     denominator = cos(phi(k)) * (1 + wc * wc / hc / hc * tan(phi(k)) * tan(phi(k)));
+    
+    value1(k) = hc^4/4/lc/lc*tan(deg2rad(phi(k)))^2;
+    value2(k) = hc^2/4;
+    value3(k) = hc^2*ho^2/lc/lc*tan(deg2rad(phi(k)))^2;
+    numerator(k) = (value1(k) + value2(k) - value3(k))^0.5 + ho;
+    denominator(k) = cos(deg2rad(phi(k))) * (1 + hc^2/lc/lc * tan(deg2rad(phi(k)))^2);
+
+    r(k) = numerator(k) / denominator(k);
+end
+
+figure();
+plot(phi,r)
+```
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231204151031891.png" alt="image-20231204151031891" style="zoom:50%;" />
 
 
 
