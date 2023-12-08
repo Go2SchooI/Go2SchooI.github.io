@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Cable Driven Manipulator 1 - Structural  Design"
-date:   2023-12-03 15:22:26 +0800
+date:   2023-11-03 15:22:26 +0800
 math: true
 ---
 
@@ -23,7 +23,9 @@ refer to Wrist Mechanism
 
 ### Detail
 
+![image-20231208223020136](https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223020136.png)
 
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223111524.png" alt="image-20231208223111524" style="zoom:50%;" />
 
 ## Wrist Mechanism
 

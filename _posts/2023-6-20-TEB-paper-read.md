@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Paper Read 1 - Trajectory modification considering dynamic constraints of autonomous robots"
-date:   2023-11-20 21:03:36 +0800
+date:   2023-6-20 21:03:36 +0800
 math: true
 ---
 
