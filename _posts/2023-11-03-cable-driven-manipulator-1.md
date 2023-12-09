@@ -27,6 +27,8 @@ refer to Wrist Mechanism
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223111524.png" alt="image-20231208223111524" style="zoom:50%;" />
 
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231210000153749.png" alt="image-20231210000153749" style="zoom:50%;" />
+
 ## Wrist Mechanism
 
 ### Paper
