@@ -2,12 +2,20 @@
 layout: post
 title:  "Cable Driven Manipulator 2 - Kinematics"
 date:   2023-12-07 14:15:06 +0800
+tags:
+- Cable Driven Manipulator
+- Kinematics
+toc:  true
 math: true
 ---
 
 The kinematics consists of two layers of models, firstly for the transformation relation from joint space to Cartesian space for the overall kinematic properties of the manipulator, and additionally to analyse the transformation relation from drive space to joint space.
 
 ## Joint space to Cartesian space
+
+Latest kinematics code implementation in my repository [cable_driven_manipulator](https://github.com/Go2SchooI/cable_driven_manipulator), including forward kinematics, inverse kinematics, Jacobi matrices, etc.
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 Algorithm validation using PUMA560 as an example:
 
@@ -144,3 +152,14 @@ In matrix operation, "inverse" is not easy to find, the best matrix to find is "
 $$
 C_2^{3^{T}} C_1^3=C_1^2
 $$
+
+
+
+
+## References
+
+[1] Peter Corke, MATLAB Robotics Toolbox [http://petercorke.com](http://petercorke.com/).
+
+[2] [SJTU-RoboMaster-Team](https://github.com/SJTU-RoboMaster-Team), [Matrix_and_Robotics_on_STM32](https://github.com/SJTU-RoboMaster-Team/Matrix_and_Robotics_on_STM32)
+
+[3] J.J.Craig, Introduction to robotics mechanics and control

@@ -2,12 +2,36 @@
 layout: post
 title:  "Cable Driven Manipulator 1 - Structural  Design"
 date:   2023-11-03 15:22:26 +0800
+tags:
+- Cable Driven Manipulator
+- Structural  Design
 math: true
+toc:  true
 ---
 
 Based on the overall needs and design performance index requirements of the cable-driven manipulator, the joints are assigned as shoulder, elbow and wrist. The shoulder and wrist joints include 3-DOF in pitch, yaw, and rotation, and the elbow joint is responsible for 1-DOF in pitch, and the shoulder, elbow, and wrist joints are connected with each other to form the overall arm.
 
+## Shoulder Mechanism
 
+### Paper
+
+[1] Anthropomorphic Low-Inertia High-Stiffness Manipulator for High-Speed Safe Interaction
+
+[2] 绳驱七自由度仿人机械臂设计及其运动控制方法研究
+
+[3] Development of Low-Inertia High-Stiffness Manipulator LIMS2  for High-Speed Manipulation of Foldable Objects
+
+### Concept
+
+1. 3 joints in series for 3-DoF
+
+2. capstan drive mechanisms
+
+### Detail
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231210164207818.png" alt="image-20231210164207818" style="zoom:50%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223111524.png" alt="image-20231208223111524" style="zoom:50%;" />
 
 ## Elbow Mechanism
 
@@ -23,11 +47,11 @@ refer to Wrist Mechanism
 
 ### Detail
 
-![image-20231208223020136](https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223020136.png)
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223020136.png" alt="image-20231208223020136" style="zoom: 50%;" />
 
-<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223111524.png" alt="image-20231208223111524" style="zoom:50%;" />
 
-<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231210000153749.png" alt="image-20231210000153749" style="zoom:50%;" />
+
+
 
 ## Wrist Mechanism
 
@@ -141,23 +165,9 @@ plot(phi,r)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Detail
+
+TBD
+
+
 
