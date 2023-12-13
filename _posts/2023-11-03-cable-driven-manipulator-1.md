@@ -47,11 +47,7 @@ refer to Wrist Mechanism
 
 ### Detail
 
-<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223020136.png" alt="image-20231208223020136" style="zoom: 50%;" />
-
-
-
-
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231212205254886.png" alt="image-20231212205254886" style="zoom:33%;" />
 
 ## Wrist Mechanism
 

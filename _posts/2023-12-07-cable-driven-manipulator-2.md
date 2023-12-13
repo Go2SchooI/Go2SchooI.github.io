@@ -13,9 +13,11 @@ The kinematics consists of two layers of models, firstly for the transformation 
 
 ## Joint space to Cartesian space
 
-Latest kinematics code implementation in my repository [cable_driven_manipulator](https://github.com/Go2SchooI/cable_driven_manipulator), including forward kinematics, inverse kinematics, Jacobi matrices, etc.
+Latest kinematics code implementation is in my repository [cable_driven_manipulator](https://github.com/Go2SchooI/cable_driven_manipulator), including forward kinematics, inverse kinematics, Jacobian matrices, etc.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+
+Version 1.0
 
 Algorithm validation using PUMA560 as an example:
 
