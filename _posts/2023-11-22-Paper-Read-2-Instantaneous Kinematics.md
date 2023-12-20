@@ -351,6 +351,6 @@ $$
 \exists \dot{q}, J \dot{q}=0
 $$
 
-We know that if A is a square matrix, then a sufficient condition for Ax=0 to have non-zero solutions is that A is a singular matrix - that is, if there are **no redundant degrees of freedom**, the case of a manipulator whose joints move and whose end effector doesn't move can only occur when it is **in singularity**. However, if A is a fat matrix, then Ax=0 must have an infinite number of non-zero solutions, and the space of these solutions is called the nullspace.
+We know that if A is a square matrix, then a sufficient condition for Ax=0 to have non-zero solutions is that A is a singular matrix - that is, if there are **no redundant degrees of freedom**, the case of a manipulator whose joints move and whose end effector doesn't move can only occur when it is **in singularity**. However, if A is a fat matrix, then Ax=0 must have an infinite number of non-zero solutions, and the space of these solutions is called the **null space**.
 
 To mention briefly: for a robot with redundant degrees of freedom, suppose you want to control the end effector to move to a certain position, but also make sure that its elbow does not hit an obstacle during the process, then you can always find a set of solutions in nullspace to meet your requirements: avoid obstacles without changing the trajectory of the end effector. Such a method is called null space control.
