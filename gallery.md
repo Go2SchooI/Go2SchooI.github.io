@@ -12,7 +12,7 @@ title: Gallery
 
 
 
-## Auto Aim
+## Auto Aiming
 
 <table style="border:none;text-align:center;width:auto;margin: 0 auto;">
         <tr>
