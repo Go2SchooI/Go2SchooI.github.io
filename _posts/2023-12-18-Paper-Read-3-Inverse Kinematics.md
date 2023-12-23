@@ -91,7 +91,7 @@ Usually you set an xd and the controller needs to go through this control loop a
 
 What to do when the Jacobian matrix is not invertible? We will discuss one of them here first: the case when the Jacobian matrix is stubby and the robot manipulator has **redundant degrees of freedom**.
 
-This time to use a mathematical concept called pseudoinverse matrix (pseudoinverse). There are many kinds of pseudoinverse matrices, and the one that is used more often in robot inverse kinematics is the right pseudoinverse matrix (right-inverse). If the pseudoinverse matrix is denoted as A+, left-inverse means that (A+)A = I; whereas **right-inverse means that A(A+) = I**.
+This time to use a mathematical concept called pseudoinverse matrix. There are many kinds of pseudoinverse matrices, and the one that is used more often in robot inverse kinematics is the right pseudoinverse matrix (right-inverse). If the pseudoinverse matrix is denoted as A+, left-inverse means that (A+)A = I; whereas **right-inverse means that A(A+) = I**.
 
 Right-inverse is obtained by solving the following problem:
 
@@ -216,7 +216,7 @@ $$
 
 That is, **find a dq** that minimises the square of the norm of Jdq - dx; ideally the equations are equal, and the norm is zero.
 
-**In the latter case**, we want ||dq|| to be as small as possible (but obviously not normally 0), so we can **add a "damping" term** to the above equation to make it look like this:
+**In the latter case**, we want norm of dq to be as small as possible (but obviously not normally 0), so we can **add a "damping" term** to the above equation to make it look like this:
 
 $$
 \min _{\dot{q}}\|J \dot{q}-\dot{x}\|^2+\lambda^2\|\dot{q}\|^2
