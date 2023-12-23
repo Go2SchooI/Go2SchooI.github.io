@@ -9,7 +9,7 @@ math: true
 
 ---
 
-A fundamental problem that robotics needs to study - because for any manipulator, the amount you want to control is in the manipulation space, while the amount you can control is in the joint space. The problem of inverse kinematics must be avoided if you want to control the end effector to perform a specific operation in the manipulation space.
+A fundamental problem in robotics - because for any manipulator, the amount you want to control is in the manipulation space, while the amount you can control is in the joint space.
 
 ## **Introduction**
 
