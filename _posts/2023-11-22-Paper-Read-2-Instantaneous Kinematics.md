@@ -252,7 +252,7 @@ $$
 \end{array}\right]^T
 $$
 
-Then the power output of the whole system (equal to force times velocity) is expressed in joint space as
+Then the **power output** of the whole system (equal to force times velocity) is expressed in joint space as
 
 $$
 P=\tau^T \dot{q}
