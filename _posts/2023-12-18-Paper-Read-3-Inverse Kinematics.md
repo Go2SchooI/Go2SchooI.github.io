@@ -39,7 +39,7 @@ $$
 \dot{x}=J \dot{q} \quad \dot{q}=J^{-1} \dot{x}
 $$
 
-Jacobian Transpose), which is the replacement of the difficult inverse operation with a transpose of the Jacobi matrix from the following equation
+Jacobian Transpose), which is the replacement of the difficult inverse operation with a transpose of the Jacobian matrix from the following equation
 
 $$
 \tau=J^T F
@@ -102,7 +102,7 @@ $$
 \end{gathered}
 $$
 
-In robotics, we would like to have as **little joint motion** as possible at each iteration (the least amount of motion out of a number of possible ways of moving), so what we're talking about above is **finding the smallest possible dq** that will satisfy the equation.
+In robotics, we would like to have as **little joint motion** as possible at each iteration (the least amount of motion out of a number of possible ways of moving), Each move towards the desired goal combines all the joints requiring the least change, i.e. **requiring the shortest path in angular space**. So what we're talking about above is **finding the smallest possible dq** that will satisfy the equation.
 
 Using Lagrange Multiplier, this problem can be turned into:
 
