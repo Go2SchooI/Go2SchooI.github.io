@@ -24,7 +24,7 @@ Although the **QP formulation of IK** is known—it can be **used to derive the 
 
 ## **Method**
 
-### **Classic Method**
+### Classic Method
 
 The task space variables x ∈ R m, joint space variables q ∈ R n
 
@@ -217,6 +217,6 @@ $$
 $$
 
 
-### **Proposed Method**
+### Proposed Method
 
 TBD
