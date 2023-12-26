@@ -125,22 +125,22 @@ $$
 where $\dot{\mathbf{q}}^{N S} \in \mathcal{N}(\mathbf{J})$ is the **null space velocity**. In other words, $\dot{\mathbf{q}}^{N S}$ **does not affect the end effector task velocity v**, since:
 
 $$
-\mathbf{J} \dot{\mathbf{q}}^{N S}=\mathbf{0} .
+\mathbf{J} \dot{\mathbf{q}}^{N S}=\mathbf{0}
 $$
 
 The **null space velocity** is expressed:
 
 $$
-\dot{\mathbf{q}}^{N S}=\mathbf{P} \dot{\mathbf{q}}^{J S},
+\dot{\mathbf{q}}^{N S}=\mathbf{P} \dot{\mathbf{q}}^{J S}
 $$
 
 where $\dot{\mathbf{q}}^{J S}$ is an **arbitrarily chosen vector** that represents the **constraint of the additional task specified directly in the joint space**, and $\mathbf{P}$ is the matrix which projects the vector $\dot{\mathbf{q}}^{J S}$ onto the null space of the Jacobian $\mathcal{N}(\mathbf{J})$:
 
 $$
-\mathbf{P}=\mathbf{I}_n-\mathbf{J}^{\#} \mathbf{J},
+\mathbf{P}=\mathbf{I}_n-\mathbf{J}^{\#} \mathbf{J}
 $$
 
-and $\mathbf{J P}=\mathbf{0}$.
+and $$\mathbf{J P}=\mathbf{0}$$.
 
 Learn from [【IIT腿足机器人控制讲义】A6:冗余机械臂(奇异，零空间优化) - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/594404266) and [Null Space 及 NSP-WBC基础 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/607573167)
 
@@ -153,7 +153,11 @@ which is the solution to the inverse kinematics problem, known as the **redundan
 One of the methods to **select the vector** $\dot{\mathbf{q}}^{J S}$ for the solution is to employ **the local optimization**:
 
 $$
-\dot{\mathbf{q}}^{J S}=k_H \nabla_{\mathbf{q}} H(\mathbf{q}),
+\dot{\mathbf{q}}^{J S}=k_H \nabla_{\mathbf{q}} H(\mathbf{q})
+$$
+
+$$
+\mathbf{H}(\boldsymbol{q})=\frac{1}{2} \sum_{i=1}^N\left(\frac{q_i-q_{i, \mathrm{mid}}}{q_{i, \max }-q_{i, \min }}\right)^2
 $$
 
 where H(q) is a **scalar configuration-dependent objective function**, ∇qH(q) is its **gradient** and kH is a scalar gain **coefficient**.
@@ -163,7 +167,7 @@ The ability of the redundant manipulator to avoid the collisions with obstacles 
 The multiple tasks are usually defined as:
 
 $$
-\mathbf{v}^i=\mathbf{J}^i \dot{\mathbf{q}}, \quad i=1, \ldots, l,
+\mathbf{v}^i=\mathbf{J}^i \dot{\mathbf{q}}, \quad i=1, \ldots, l
 $$
 
 where v i ∈ R mi is the **i-th task velocity**, J i ∈ R mi×n is the **i-th task Jacobian**, l is the number of tasks, mi is the i-th task dimension. The order of task priority is decreasing, i.e., **the task i + 1 has a lower priority than the task i**.
@@ -171,7 +175,7 @@ where v i ∈ R mi is the **i-th task velocity**, J i ∈ R mi×n is the **i-th 
 A recursive solution:
 
 $$
-\dot{\mathbf{q}}^i=\dot{\mathbf{q}}^{i-1}+\left(\mathbf{J}^i \mathbf{P}_A^{i-1}\right)^{\#}\left(\mathbf{v}^i-\mathbf{J}^i \dot{\mathbf{q}}^{i-1}\right),
+\dot{\mathbf{q}}^i=\dot{\mathbf{q}}^{i-1}+\left(\mathbf{J}^i \mathbf{P}_A^{i-1}\right)^{\#}\left(\mathbf{v}^i-\mathbf{J}^i \dot{\mathbf{q}}^{i-1}\right)
 $$
 
 for $i=1, \ldots, l$, and where $\dot{\mathbf{q}}^l$ is the **solution accounting for all the tasks**, while $\dot{\mathbf{q}}^0=\mathbf{0}$ and $\mathbf{P}_A^0=\mathbf{I}$. The matrix $\mathbf{P}_A^i$:
@@ -207,16 +211,196 @@ $$
 The joint velocity $\dot{\mathbf{q}}_k$ is just a discrete form:
 
 $$
-\dot{\mathbf{q}}_k=\mathbf{J}^{\#}\left(\mathbf{q}_k\right) \mathbf{v}_k+\mathbf{P}\left(\mathbf{q}_k\right) \dot{\mathbf{q}}_k^{J S},
+\dot{\mathbf{q}}_k=\mathbf{J}^{\#}\left(\mathbf{q}_k\right) \mathbf{v}_k+\mathbf{P}\left(\mathbf{q}_k\right) \dot{\mathbf{q}}_k^{J S}
 $$
 
 where $\dot{\mathbf{q}}_k=\dot{\mathbf{q}}\left(t_k\right), \mathbf{v}_k=\mathbf{v}\left(t_k\right), \dot{\mathbf{q}}_k^{J S}=\dot{\mathbf{q}}^{J S}\left(t_k\right)$, and $\mathbf{P}\left(\mathbf{q}_k\right)$:
 
 $$
-\mathbf{P}\left(\mathbf{q}_k\right)=\mathbf{I}-\mathbf{J}^{\#}\left(\mathbf{q}_k\right) \mathbf{J}\left(\mathbf{q}_k\right) .
+\mathbf{P}\left(\mathbf{q}_k\right)=\mathbf{I}-\mathbf{J}^{\#}\left(\mathbf{q}_k\right) \mathbf{J}\left(\mathbf{q}_k\right) 
+$$
+
+### Proposed Method
+
+**JOINT STATE EQUATIONS**
+
+To directly bound the acceleration q_ddot at each time tk , the joint state equations have to be formulated at the acceleration level:
+
+$$
+\left\{\begin{array}{l}
+\mathbf{q}_{k+1}=\mathbf{q}_k+\dot{\mathbf{q}}_k \Delta t+\frac{1}{2} \ddot{\mathbf{q}}_k(\Delta t)^2 \\
+\dot{\mathbf{q}}_{k+1}=\dot{\mathbf{q}}_k+\ddot{\mathbf{q}}_k \Delta t
+\end{array}\right.
+$$
+
+i.e. 
+
+$$
+\mathbf{z}_{k+1}=\mathbf{A} \mathbf{z}_k+\mathbf{B} \mathbf{u}_k
+$$
+
+where the state $$\mathbf{z}_k \in \mathbb{R}^{2 n}$$ is:
+
+$$
+\mathbf{z}_k=\left[\begin{array}{c}
+\mathbf{q}_k \\
+\dot{\mathbf{q}}_k
+\end{array}\right]
+$$
+
+joint acceleration is the control vector: $$\mathbf{u}_k=\ddot{\mathbf{q}}_k$$.
+
+$$
+\begin{aligned}
+& \mathbf{A}=\left[\begin{array}{cc}
+\mathbf{I}_n & \Delta t \mathbf{I}_n \\
+\mathbf{0}_{n \times n} & \mathbf{I}_n
+\end{array}\right] \\
+& \mathbf{B}=\left[\begin{array}{c}
+\frac{1}{2}(\Delta t)^2 \mathbf{I}_n \\
+\Delta t \mathbf{I}_n
+\end{array}\right]
+\end{aligned}
+$$
+
+ divided into two parts:
+
+$$
+\left\{\begin{array}{l}
+\mathbf{q}_{k+1}=\mathbf{A}_0 \mathbf{z}_k+\mathbf{B}_0 \mathbf{u}_k \\
+\dot{\mathbf{q}}_{k+1}=\mathbf{A}_1 \mathbf{z}_k+\mathbf{B}_1 \mathbf{u}_k
+\end{array}\right.
+$$
+
+$$
+\begin{aligned}
+& \mathbf{A}_0=\left[\begin{array}{ll}
+\mathbf{I} & \mathbf{0}
+\end{array}\right] \mathbf{A} \\
+& \mathbf{B}_0=\left[\begin{array}{ll}
+\mathbf{I} & \mathbf{0}
+\end{array}\right] \mathbf{B} \\
+& \mathbf{A}_1=\left[\begin{array}{ll}
+\mathbf{0} & \mathbf{I}
+\end{array}\right] \mathbf{A} \\
+& \mathbf{B}_1=\left[\begin{array}{ll}
+\mathbf{0} & \mathbf{I}
+\end{array}\right] \mathbf{B}
+\end{aligned}
+$$
+
+and $$\mathbf{I} \in \mathbb{R}^{n \times n}$$ and $$\mathbf{0} \in \mathbb{R}^{n \times n}$$.
+
+The relationship between the joint and end effector velocity vectors
+
+$$
+\mathbf{J}\left(\mathbf{q}_{k+1}\right) \cdot \dot{\mathbf{q}}_{k+1}=\mathbf{v}_{k+1}
+$$
+
+Combining with qk, qk_dot, the following result is obtained:
+
+$$
+\mathbf{J}_{k+1} \cdot\left(\mathbf{A}_1 \mathbf{z}_k+\mathbf{B}_1 \mathbf{u}_k\right)=\mathbf{v}_{k+1}
+$$
+
+where:
+
+$$
+\mathbf{J}_{k+1}=\mathbf{J}\left(\mathbf{q}_{k+1}\right)=\mathbf{J}\left(\mathbf{A}_0 \mathbf{z}_k+\mathbf{B}_0 \mathbf{u}_k\right)
 $$
 
 
-### Proposed Method
+An approximation of Jk+1 based on the solution from the previous step can be used to formulate **a linear kinematic constraint**.
+
+an approximation $$\hat{\mathbf{q}}_{k+1}$$ of the future joint position $$\mathbf{q}_{k+1}$$ can be computed as:
+
+$$
+\hat{\mathbf{q}}_{k+1}=\mathbf{A}_0 \mathbf{z}_k+\mathbf{B}_0 \hat{\mathbf{u}}_k,
+$$
+
+where $$\hat{\mathbf{u}}_k=\mathbf{u}_{k-1}^*$$ is the solution from the previous step.
+
+$$
+\hat{\mathbf{J}}_{k+1}=\mathbf{J}\left(\hat{\mathbf{q}}_{k+1}\right) .
+$$
+
+a linear equation in terms of uk:
+
+$$
+\hat{\mathbf{J}}_{k+1} \cdot\left(\mathbf{A}_1 \mathbf{z}_k+\mathbf{B}_1 \mathbf{u}_k\right)=\mathbf{v}_{k+1} .
+$$
+
+**JOINT CONSTRAINTS**
+
+The novel IK formulation requires also the inequality constraints to represent the joint position (qmin and qmax), velocity (q_dot_min and q_dot_max) and acceleration limits (q_ddot_min and q_ddot_max).
+
+$$
+\mathbf{q}_{\min } \leq \mathbf{q}_k+\dot{\mathbf{q}}_k \Delta t+\frac{1}{2} \ddot{\mathbf{q}}_k(\Delta t)^2 \leq \mathbf{q}_{\max },
+$$
+
+$$
+\dot{\mathbf{q}}_{\min } \leq \dot{\mathbf{q}}_k+\ddot{\mathbf{q}}_k \Delta t \leq \dot{\mathbf{q}}_{\max },
+$$
+
+$$
+\ddot{\mathbf{q}}_{\min } \leq \ddot{\mathbf{q}}_k \leq \ddot{\mathbf{q}}_{\max } .
+$$
+
+The robot joints cannot stop in an instant. Applying the maximum deceleration $$\ddot{q}_{\min , j}<0$$ to the j-th joint for some time $$t \geq t_k$$ results in the following position and velocity:
+
+$$
+\left\{\begin{array}{l}
+q_j(t)=q_{k, j}+\dot{q}_{k, j}\left(t-t_k\right)+\frac{1}{2} \ddot{q}_{\min , j}\left(t-t_k\right)^2 \\
+\dot{q}_j(t)=\dot{q}_{k, j}+\ddot{q}_{\min , j}\left(t-t_k\right)
+\end{array}\right.
+$$
+
+When the j-th joint reaches its limit $$q_{\max , j}$$, its velocity should be less or equal to zero. Suppose this event happens at some $$t=t^*>t_k$$ :
+
+$$
+\left\{\begin{array}{l}
+q_j\left(t^*\right)=q_{k, j}+\dot{q}_{k, j}\left(t^*-t_k\right)+\frac{1}{2} \ddot{q}_{\min , j}\left(t^*-t_k\right)^2=q_{\max , j} \\
+\dot{q}_j\left(t^*\right)=\dot{q}_{k, j}+\ddot{q}_{\min , j}\left(t^*-t_k\right) \leq 0 .
+\end{array}\right.
+$$
+
+$$
+\dot{q}_{k, j} \leq \sqrt{-2 \ddot{q}_{\min , j}\left(q_{\max , j}-q_{k, j}\right)}
+$$
+
+$$
+\dot{q}_{k, j} \geq-\sqrt{2 \ddot{q}_{\max , j}\left(q_{k, j}-q_{\min , j}\right)}
+$$
+
+Transformed into a form dependent on $$\mathbf{u}_k$$. 
+
+$$
+\mathbf{q}_{\min }-\mathbf{A}_0 \mathbf{z}_k \leq \mathbf{B}_0 \mathbf{u}_k \leq \mathbf{q}_{\max }-\mathbf{A}_0 \mathbf{z}_k,
+$$
+
+$$
+\dot{\mathbf{q}}_{\min }-\mathbf{A}_1 \mathbf{z}_k \leq \mathbf{B}_1 \mathbf{u}_k \leq \dot{\mathbf{q}}_{\max }-\mathbf{A}_1 \mathbf{z}_k,
+$$
+
+$$
+\ddot{\mathbf{q}}_{\min } \leq \mathbf{u}_k \leq \ddot{\mathbf{q}}_{\max } .
+$$
+
+The constraints for $$\dot{\mathbf{q}}_{k+1}$$ can be transformed into:
+
+$$
+\rho_{\min } \leq \mathbf{u}_k \leq \rho_{\max },
+$$
+
+where:
+
+$$
+\begin{aligned}
+& \rho_{\text {min }, j}=\frac{-\sqrt{2 \ddot{q}_{\max , j}\left(\hat{q}_{k+1, j}-q_{\min , j}\right)}-\dot{q}_{k, j}}{\Delta t} \\
+& \rho_{\max , j}=\frac{\sqrt{-2 \ddot{q}_{\min , j}\left(q_{\max , j}-\hat{q}_{k+1, j}\right)}-\dot{q}_{k, j}}{\Delta t} \\
+& \text { for } j=1, \ldots, n \text {. } \\
+&
+\end{aligned}
+$$
 
 TBD
