@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Cable Driven Manipulator 2 - Kinematics"
-date:   2023-12-07 14:15:06 +0800
+date:   2024-1-04 17:36:06 +0800
 tags:
 - Cable Driven Manipulator
 - Kinematics
@@ -14,6 +14,24 @@ The kinematics consists of two layers of models, firstly for the transformation 
 ## Joint space to Cartesian space
 
 Latest kinematics code implementation is in my repository [cable_driven_manipulator](https://github.com/Go2SchooI/cable_driven_manipulator), including forward kinematics, inverse kinematics, Jacobian matrices, etc.
+
+-------------------------------------------
+
+Version 2.0
+
+Based on the purpose of effect visualisation, function encapsulation other than inverse kinematics is completed.
+
+Add KUKA LBR iiwa manipulator demo, completing inverse kinematics based on Damped Least Square method.
+
+<table style="border:none;text-align:center;width:auto;margin: 0 auto;">
+        <tr>
+            <td style="border: none;"><img src = "https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/target.png" alt="target" style="zoom:33%;"></td>
+            <td style="border: none;"><img src = "https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/dls_result.png" alt="dls_result" style="zoom:33%;"></td>
+    	</tr>
+        <tr>
+            <td><div style="font-family:黑体;font-size:8pt;">Figure 1 Target 6D Pose</div></td><td><div style="font-family:黑体;font-size:8pt;">Figure 2 Result 6D Pose</div></td>
+    </tr>
+</table>
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
