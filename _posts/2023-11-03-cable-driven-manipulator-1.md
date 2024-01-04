@@ -19,7 +19,7 @@ Based on the overall needs and design performance index requirements of the cabl
 
 [2] 绳驱七自由度仿人机械臂设计及其运动控制方法研究
 
-[3] Development of Low-Inertia High-Stiffness Manipulator LIMS2  for High-Speed Manipulation of Foldable Objects
+[3] Development of Low-Inertia High-Stiffness Manipulator LIMS2 for High-Speed Manipulation of Foldable Objects
 
 ### Concept
 
@@ -29,9 +29,15 @@ Based on the overall needs and design performance index requirements of the cabl
 
 ### Detail
 
+V1.0
+
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231210164207818.png" alt="image-20231210164207818" style="zoom:50%;" />
 
-<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231208223111524.png" alt="image-20231208223111524" style="zoom:50%;" />
+V2.0
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240101164831484.png" alt="image-20240101164831484" style="zoom:33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240101165016429.png" alt="image-20240101165016429" style="zoom:33%;" />
 
 ## Elbow Mechanism
 
@@ -40,6 +46,8 @@ Based on the overall needs and design performance index requirements of the cabl
 [1] Anthropomorphic Low-Inertia High-Stiffness Manipulator for High-Speed Safe Interaction
 
 [2] 绳驱七自由度仿人机械臂设计及其运动控制方法研究
+
+[3] 一类绳驱机械臂的控制系统设计与实现
 
 ### Concept
 
@@ -54,6 +62,10 @@ V1.0
 V2.0
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20231218165747806.png" alt="image-20231218165747806" style="zoom: 33%;" />
+
+V2.1
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240101164524566.png" alt="image-20240101164524566" style="zoom:33%;" />
 
 ## Wrist Mechanism
 
