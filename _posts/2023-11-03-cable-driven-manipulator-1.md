@@ -181,7 +181,12 @@ plot(phi,r)
 
 ### Detail
 
-TBD
+V1.0
 
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240109170037984.png" alt="image-20240109170037984" style="zoom:33%;" />
 
+V2.0
 
+wc = 30; lc = 85; ho = 5;
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240115023328968.png" alt="image-20240115023328968" style="zoom: 33%;" />
