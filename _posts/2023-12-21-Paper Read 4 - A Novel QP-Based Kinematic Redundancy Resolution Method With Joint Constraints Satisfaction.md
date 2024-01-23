@@ -4,11 +4,14 @@ title:  "Paper Read 4 - A Novel QP-Based Kinematic Redundancy Resolution Method 
 date:   2023-12-21 17:14:00 +0800
 tags:
 - Manipulator
+- Kinematics
 toc:  true
 math: true
 
 
 ---
+
+I want to document the learning process of reading a paper which uses **velocity-level IK method** achieving **joint acceleration constraints** together with the **velocity- and position-level constraints**.
 
 ## **Abstract**
 
@@ -20,7 +23,7 @@ math: true
 
 ## **Introduction**
 
-Although the **QP formulation of IK** is known—it can be **used to derive the pseudoinverse-based IK** , this paper presents an important enhancement. The scientific novelty of this work is the proposition of a **velocity-level IK method** that allows the fulfilment of the joint **acceleration constraints** together with the **velocity- and position-level constraints**. The elements of the goal function, the Hessian matrix and other necessary quantities, are formulated in the form that uses accelerations instead of the usual velocities.
+Although the **QP formulation of IK** is known—it can be **used to derive the pseudoinverse-based IK** , this paper presents an important enhancement. The scientific novelty of this work is the proposition of a **velocity-level IK method** that allows the fulfilment of the joint **acceleration constraints** together with the **velocity- and position-level constraints**. The elements of the goal function are formulated in the form that **uses accelerations** instead of the usual velocities.
 
 ## **Method**
 

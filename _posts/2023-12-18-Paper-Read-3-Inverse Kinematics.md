@@ -4,6 +4,7 @@ title:  "Paper Read 3 - Inverse Kinematics"
 date:   2023-12-18 13:43:00 +0800
 tags:
 - Manipulator
+- Kinematics
 toc:  true
 math: true
 

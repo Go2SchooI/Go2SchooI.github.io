@@ -17,7 +17,7 @@ $$
 
 q vector represents the joint position and x vector represents the position and orientation of the end effector.
 
-## Instantaneous Kinematics
+## **Instantaneous Kinematics**
 
 When "instantaneous kinematics" solves for the mapping of velocities from joint space to operation space, since velocity describes a change in position over a short period of time, the derivative of position with respect to time, I'm sure it's natural for you to think that we need to solve for such a function:
 
@@ -142,7 +142,7 @@ $$
 
 The upper part corresponds to the **linear velocity** and the lower part to the **angular velocity**.
 
-## Linear velocity component (Jv)
+## **Linear velocity component (Jv)**
 
 If our manipulator is a bit more complex and we need to use chi-square coordinate transformations to find the forwardkinematics formula, how should the Jacobian matrix be solved?
 
@@ -169,7 +169,7 @@ l_2 c \theta_1 c \theta_3+l_1 c \theta_1 & 0 & -l_2 s \theta_1 s \theta_3 & 0 \\
 \end{array}\right]
 $$
 
-## Angular velocity component (Jw)
+## **Angular velocity component (Jw)**
 
 Let's start by looking at the simplest planar manipulator:
 
@@ -217,7 +217,7 @@ $$
 
 The three elements of the third column are the $\hat{z}_1$ and $\hat{z}_3$.
 
-## Conclusion
+## **Conclusion**
 
 1. The upper part Jv of the fundamental Jacobian matrix is obtained by taking the derivative of the position vector of the end effector with respect to the joints;
 2. The position vector of the end effector can be obtained from the forwardkinematics solution
@@ -230,7 +230,7 @@ The three elements of the third column are the $\hat{z}_1$ and $\hat{z}_3$.
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/%E6%8E%A8%E5%AF%BC_14_1702283311374.png" alt="推导_14_1702283311374" style="zoom: 25%;" />
 
-## Force Relationship
+## **Force Relationship**
 
 Having examined the position mapping relationship and velocity mapping relationship between joint space and operation space, we now ask another question: what about their **force/torque mapping relationship**?
 
@@ -302,7 +302,7 @@ After a long derivation, we get another important use of the Jacobian matrix: th
 
 So what is the point of learning this force mapping relationship for a real manipulator? For the most traditional position-controlled robots, which rely on sensing the position accurately, this equation may indeed be of little use. However, more and more applications require robots to be able to **maintain a specific force** at a certain position/direction (e.g., gripping an object, cleaning a glass), or to work safely in a complex environment (to ensure that it does not exert too much force on an object when it hits an obstacle); this mapping is essential to achieve such control.
 
-## Singularity
+## **Singularity**
 
 Simply put, Singularity is the loss of directional freedom of the end effector when the manipulator is in a certain configuration (i.e., a particular combination of joint positions) - the moment your manipulator is straight, your hand will never be able to move in the direction of your manipulator.
 
@@ -343,7 +343,7 @@ So the singular configuration is θ2 = 0. At this point, the manipulator is "str
 
 Mathematically, the statement of singular matrices is only valid for square matrices, and finding eigenvalues is also only valid for square matrices. For robots, (Kinematic) Singularity is a downscaling of the robot's end effector motion space at a certain configuration, and has nothing to do with the shape of the Jacobian matrix - it's just that when the Jacobian matrix isn't a square matrix, we need to **get rid of the redundant degrees of freedom** away before solving.
 
-## Redundancy
+## **Redundancy**
 
 Speaking of redundant degrees of freedom, I'm sure you can already figure out how to see redundancy from the Jacobian matrix - when it's short and fat that is. Your hand was also used as an example in the first post, because the human hand has seven degrees of freedom in joint space, so you are able to **move your elbow with your hand fixed**. Mathematically, this means
 

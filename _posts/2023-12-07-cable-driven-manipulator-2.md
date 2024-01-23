@@ -11,13 +11,13 @@ math: true
 
 The kinematics consists of two layers of models, firstly for the transformation relation from joint space to Cartesian space for the overall kinematic properties of the manipulator, and additionally to analyse the transformation relation from drive space to joint space.
 
-## Joint space to Cartesian space
+## **Joint space to Cartesian space**
 
 Latest kinematics code implementation is in my repository [cable_driven_manipulator](https://github.com/Go2SchooI/cable_driven_manipulator), including forward kinematics, inverse kinematics, Jacobian matrices, etc.
 
 -------------------------------------------
 
-Version 2.0
+### Version 2.0
 
 Based on the purpose of effect visualisation, function encapsulation other than inverse kinematics is completed.
 
@@ -35,7 +35,7 @@ Add KUKA LBR iiwa manipulator demo, completing inverse kinematics based on Dampe
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Version 1.0
+### Version 1.0
 
 Algorithm validation using PUMA560 as an example:
 
@@ -176,7 +176,7 @@ $$
 
 
 
-## References
+## **References**
 
 [1] Peter Corke, MATLAB Robotics Toolbox [http://petercorke.com](http://petercorke.com/).
 
