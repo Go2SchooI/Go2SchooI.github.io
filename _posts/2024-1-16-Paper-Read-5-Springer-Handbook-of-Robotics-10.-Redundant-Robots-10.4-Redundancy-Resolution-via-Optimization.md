@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Paper Read 6 - Springer Handbook of Robotics 10. Redundant Robots 10.4 Redundancy Resolution via Optimization"
+title:  "Paper Read 5 - Springer Handbook of Robotics 10. Redundant Robots 10.4 Redundancy Resolution via Optimization"
 date:   2024-1-16 14:40:00 +0800
 tags:
 - Manipulator

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Paper Read 5 - Introduction to Inverse Kinematics with Jacobian Transpose, Pseudoinverse and Damped Least Squares methods"
+title:  "Paper Read 4 - Introduction to Inverse Kinematics with Jacobian Transpose, Pseudoinverse and Damped Least Squares methods"
 date:   2024-1-15 13:59:00 +0800
 tags:
 - Manipulator

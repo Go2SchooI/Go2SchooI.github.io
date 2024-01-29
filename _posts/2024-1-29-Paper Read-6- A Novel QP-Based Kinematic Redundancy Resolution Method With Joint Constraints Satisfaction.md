@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Paper Read 4 - A Novel QP-Based Kinematic Redundancy Resolution Method With Joint Constraints Satisfaction"
-date:   2023-12-21 17:14:00 +0800
+title:  "Paper Read 6 - A Novel QP-Based Kinematic Redundancy Resolution Method With Joint Constraints Satisfaction"
+date:   2024-1-29 17:14:00 +0800
 tags:
 - Manipulator
 - Kinematics
@@ -15,15 +15,15 @@ I want to document the learning process of reading a paper which uses **velocity
 
 ## **Abstract**
 
-1. A novel redundancy resolution method based on a less common **quadratic programming (QP) approach**
+1. A novel redundancy resolution method based on **quadratic programming (QP) approach**
 
-2. Velocity-level IK method allows fulfilment of the joint constraints at the **position, velocity, and acceleration levels**.
+2. Velocity-level IK method allows the joint constraints at the **position, velocity, and acceleration levels**.
 
 3. The discretized joint state equations allow the use of **joint accelerations as decision variables** in the QP problem.
 
 ## **Introduction**
 
-Although the **QP formulation of IK** is known—it can be **used to derive the pseudoinverse-based IK** , this paper presents an important enhancement. The scientific novelty of this work is the proposition of a **velocity-level IK method** that allows the fulfilment of the joint **acceleration constraints** together with the **velocity- and position-level constraints**. The elements of the goal function are formulated in the form that **uses accelerations** instead of the usual velocities.
+Although the **QP formulation of IK**—it can be **used to derive the pseudoinverse-based IK** , this paper presents an important enhancement. The scientific novelty of this work is the proposition of a **velocity-level IK method** that allows the fulfilment of the joint **acceleration constraints** together with the **velocity- and position-level constraints**. The elements of the goal function are formulated in the form that **uses accelerations** instead of the usual velocities.
 
 ## **Method**
 
@@ -165,7 +165,7 @@ $$
 
 where H(q) is a **scalar configuration-dependent objective function**, ∇qH(q) is its **gradient** and kH is a scalar gain **coefficient**.
 
-The ability of the redundant manipulator to avoid the collisions with obstacles in the workspace can be also utilized by adding a task defined by its Jacobian matrix and velocity vector. However, specifying multiple additional tasks alongside the main one might result in **conflicting task situations**. Therefore, a **task priority strategy** is needed to ensure that each **lower priority task is satisfied only in the null space of the higher priority tasks**.
+Specifying multiple additional tasks alongside the main one might result in **conflicting task situations**. Therefore, a **task priority strategy** is needed to ensure that each **lower priority task is satisfied only in the null space of the higher priority tasks**.
 
 The multiple tasks are usually defined as:
 
@@ -173,7 +173,7 @@ $$
 \mathbf{v}^i=\mathbf{J}^i \dot{\mathbf{q}}, \quad i=1, \ldots, l
 $$
 
-where v i ∈ R mi is the **i-th task velocity**, J i ∈ R mi×n is the **i-th task Jacobian**, l is the number of tasks, mi is the i-th task dimension. The order of task priority is decreasing, i.e., **the task i + 1 has a lower priority than the task i**.
+where vi ∈ R mi is the **i-th task velocity**, Ji ∈ R mi×n is the **i-th task Jacobian**, l is the number of tasks, mi is the i-th task dimension. The order of task priority is decreasing, i.e., **the task i + 1 has a lower priority than the task i**.
 
 A recursive solution:
 
@@ -216,8 +216,6 @@ The joint velocity $\dot{\mathbf{q}}_k$ is just a discrete form:
 $$
 \dot{\mathbf{q}}_k=\mathbf{J}^{\#}\left(\mathbf{q}_k\right) \mathbf{v}_k+\mathbf{P}\left(\mathbf{q}_k\right) \dot{\mathbf{q}}_k^{J S}
 $$
-
-where $\dot{\mathbf{q}}_k=\dot{\mathbf{q}}\left(t_k\right), \mathbf{v}_k=\mathbf{v}\left(t_k\right), \dot{\mathbf{q}}_k^{J S}=\dot{\mathbf{q}}^{J S}\left(t_k\right)$, and $\mathbf{P}\left(\mathbf{q}_k\right)$:
 
 $$
 \mathbf{P}\left(\mathbf{q}_k\right)=\mathbf{I}-\mathbf{J}^{\#}\left(\mathbf{q}_k\right) \mathbf{J}\left(\mathbf{q}_k\right) 
@@ -335,7 +333,7 @@ $$
 
 **JOINT CONSTRAINTS**
 
-The novel IK formulation requires also the inequality constraints to represent the joint position (qmin and qmax), velocity (q_dot_min and q_dot_max) and acceleration limits (q_ddot_min and q_ddot_max).
+The novel IK formulation requires also the inequality constraints to represent the **joint position, velocity and acceleration limits**.
 
 $$
 \mathbf{q}_{\min } \leq \mathbf{q}_k+\dot{\mathbf{q}}_k \Delta t+\frac{1}{2} \ddot{\mathbf{q}}_k(\Delta t)^2 \leq \mathbf{q}_{\max },
@@ -349,7 +347,7 @@ $$
 \ddot{\mathbf{q}}_{\min } \leq \ddot{\mathbf{q}}_k \leq \ddot{\mathbf{q}}_{\max } .
 $$
 
-The robot joints cannot stop in an instant. Applying the maximum deceleration $$\ddot{q}_{\min , j}<0$$ to the j-th joint for some time $$t \geq t_k$$ results in the following position and velocity:
+The robot joints **cannot stop in an instant**. Applying the **maximum deceleration** $$\ddot{q}_{\min , j}<0$$ to the j-th joint for some time $$t \geq t_k$$ results in the following position and velocity:
 
 $$
 \left\{\begin{array}{l}
@@ -358,7 +356,7 @@ q_j(t)=q_{k, j}+\dot{q}_{k, j}\left(t-t_k\right)+\frac{1}{2} \ddot{q}_{\min , j}
 \end{array}\right.
 $$
 
-When the j-th joint reaches its limit $$q_{\max , j}$$, its velocity should be less or equal to zero. Suppose this event happens at some $$t=t^*>t_k$$ :
+When the j-th joint **reaches its limit** $$q_{\max , j}$$, its velocity should be **less or equal to zero**. Suppose this event happens at some $$t=t^*>t_k$$ :
 
 $$
 \left\{\begin{array}{l}
