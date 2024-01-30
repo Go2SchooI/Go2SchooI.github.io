@@ -15,13 +15,35 @@ The kinematics consists of two layers of models, firstly for the transformation 
 
 Latest kinematics code implementation is in my repository [cable_driven_manipulator](https://github.com/Go2SchooI/cable_driven_manipulator), including forward kinematics, inverse kinematics, Jacobian matrices, etc.
 
+------------------
+
+### Version 2.1
+
+Supplement KUKA LBR iiwa manipulator demo, completing inverse kinematics based on gradient projection method (GPM).
+
+Assume $$\theta5$$ has max as pi/2 and min as pi/3.
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240130201539629.png" alt="image-20240130201539629" style="zoom:50%;" />
+
+<table style="border:none;text-align:center;width:auto;margin: 0 auto;">
+        <tr>
+            <td style="border: none;"><img src = "https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240130211559690.png" alt="target" style="zoom:100%;"></td>
+            <td style="border: none;"><img src = "https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240130201618325.png" alt="dls_result" style="zoom:100%;"></td>
+    	</tr>
+        <tr>
+            <td><div style="font-family:黑体;font-size:8pt;">Figure 1 Target Angle</div></td><td><div style="font-family:黑体;font-size:8pt;">Figure 2 Result Angle</div></td>
+    </tr>
+</table>
+
+We can see that $$\theta5$$ is limited.
+
 -------------------------------------------
 
 ### Version 2.0
 
 Based on the purpose of effect visualisation, function encapsulation other than inverse kinematics is completed.
 
-Add KUKA LBR iiwa manipulator demo, completing inverse kinematics based on Damped Least Square method.
+Add KUKA LBR iiwa manipulator demo, completing inverse kinematics based on Damped Least Square (DLS) method.
 
 <table style="border:none;text-align:center;width:auto;margin: 0 auto;">
         <tr>
@@ -183,3 +205,9 @@ $$
 [2] [SJTU-RoboMaster-Team](https://github.com/SJTU-RoboMaster-Team), [Matrix_and_Robotics_on_STM32](https://github.com/SJTU-RoboMaster-Team/Matrix_and_Robotics_on_STM32)
 
 [3] J.J.Craig, Introduction to robotics mechanics and control
+
+[4] Buss, S. R. (2004). Introduction to inverse kinematics with Jacobian transpose, pseudoinverse and damped least squares methods. *IEEE Journal of Robotics & Automation, 17*(1).
+
+[5] Chiaverini, S., Oriolo, G., & Maciejewski, A. A. (2016). *Redundant Robots*. Cham, Switzerland: Springer.
+
+[6] Woliński, Ł., & Wojtyra, M. (2022). A Novel QP-Based Kinematic Redundancy Resolution Method With Joint Constraints Satisfaction. *IEEE Access, 10*, 41023-41037. doi: 10.1109/ACCESS.2022.3167403.

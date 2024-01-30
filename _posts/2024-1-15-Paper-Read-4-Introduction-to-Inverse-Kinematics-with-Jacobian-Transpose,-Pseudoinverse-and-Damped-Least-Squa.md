@@ -180,5 +180,5 @@ Derivation of relevant formula
 
 1. **The Jacobian transpose** performed **poorly in multiple end effectors**, but **works well in single end effector**. For these applications, the Jacobian transpose is **fast and easy to implement**. 
 2. **The pseudoinverse method** worked very **poorly** whenever the target positions were out of reach.
-3. **The damped least squares method** worked **better** than the Jacobian transpose method in multiple end effectors, although **slower**. Set the damping constant *λ* to minimize the average error of the end effectors’s positions, but cause oscillation and shaking. 
+3. **The damped least squares method** worked **better** than the Jacobian transpose method in **multiple end effectors**, although **slower**. Set the damping constant *λ* to minimize the average error of the end effectors’s positions, but cause oscillation and shaking. 
 4. A **good idea to clamp the maximum angle change** in a single update to avoid bad behavior from **unwanted large instantaneous changes** in angles.
