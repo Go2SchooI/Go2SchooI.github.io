@@ -4,7 +4,7 @@
 
 ## **前言**
 
-这篇论文的名字是 "具身多模态语言模型"（Embodied Multimodal Language Model），先来分析一下这个名字是啥意思：
+这篇论文的名字是 "具身多模态语言模型"（Embodied Multimodal Language Model），先来分析一下这个名字：
 
 - 具身（Embodied）：表示该**模型接入了机器人**，具有了身体。
 - 多模态（Multimodal）：表示该模型的输入是多模态的，包括**文本**（textual input encodings）、**视觉**（visual）、**连续状态估计**（continuous state estimation）。

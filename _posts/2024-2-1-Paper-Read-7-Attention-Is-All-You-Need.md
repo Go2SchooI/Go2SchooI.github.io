@@ -34,9 +34,9 @@ This series is expected to consist of a relatively small number of posts, with t
 
 ### **RNN**
 
-对于处理输入、输出不定长且存在上下文依赖的序列数据，类似DNN、CNN网络其效率较低，且无法解决依赖问题。对此我们需引入循环神经网络。（RNN， Recurrent Neural Network）
+对于处理**输入、输出不定长**且存在**上下文依赖**的序列数据，类似DNN、CNN网络其效率较低，且无法解决依赖问题。对此我们需引入循环神经网络。（RNN， Recurrent Neural Network）
 
-RNN的核心思想即是将数据按时间轴展开，每一时刻数据均对应相同的神经单元，且上一时刻的结果能传递至下一时刻。至此便解决了输入输出变长且存在上下文依赖的问题。循环神经网络可以看做是数据以链状结构展开
+RNN的核心思想即是将**数据按时间轴展开**，每一时刻数据均对应相同的神经单元，且**上一时刻的结果能传递至下一时刻**。至此便解决了输入输出变长且存在上下文依赖的问题。
 
 循环神经网络可以看做在做“加法”操作，即通过加法中的进位操作，将上一时刻的信息或结果传递至下一时刻，如下所示：
 
@@ -58,7 +58,7 @@ RNN网络误差反向传播过程如下：
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-90c7b57dbedca67cbfa80c0db9152936_720w.webp" alt="img" style="zoom:125%;" />
 
-RNN的训练过程是子网络沿时间轴的展开，其本质上仍在训练同一个子网络，因此在每次梯度下降时我们需要对同一个子网络的参数进行更新。常见的做法是在每一次参数的调整使均指向同一内存地址。
+RNN的训练过程是子网络沿时间轴的展开，其本质上仍在**训练同一个子网络**，因此在每次梯度下降时我们需要对同一个子网络的参数进行更新。常见的做法是在每一次参数的调整使均指向同一内存地址。
 
 RNN存在优化困难的问题
 
@@ -70,7 +70,7 @@ RNN存在优化困难的问题
 
 ### **LSTM**
 
-LSTM与单一tanh循环体结构不同，其拥有三个特殊的“门”结构，它是一种特殊的循环体网络。
+LSTM与单一tanh循环体结构不同，其拥有**三个特殊的“门”结构**，它是一种特殊的循环体网络。
 
 LSTM单元不仅接受此时刻的输入数据 $x_t$ 和上一时刻的状态信息 $h_{t-1}$ ，其还需建立一个机制能保留前面远处结点信息不会被丟失。具体操作是通过设计“门”结构实现**保留信息和选择信息**功能 (遗忘门、输入门)，每个门结构由一个sigmoid层和一个poinewise操作 (按位乘法操作) 构成。其中sigmoid作为激活函数的全连接神经网络层会输出一个0到1之间的数值，描述**当前输入有多少信息量可以通过这个结构**，其功能就类似于一扇门。
 
@@ -98,11 +98,11 @@ LSTM结构如上图所示，可以看出其结构较为复杂，这也引起了�
 
 在上文的讨论中，我们均考虑的是输入输出序列等长的问题，然而在实际中却大量存在**输入输出序列长度不等**的情况，如机器翻译、语音识别、问答系统等。这时我们便需要设计一种**映射可变长序列至另一个可变长序列的RNN网络结构**，Encoder-Decoder框架呼之欲出。
 
-Encoder-Decoder框架是**机器翻译**（Machine Translation）模型的产物，其于2014年在**Seq2Seq**循环神经网络中首次提出。在统计翻译模型中，模型的训练步骤可以分为预处理、词对齐、短语对齐、抽取短语特征、训练语言模型、学习特征权重等诸多步骤。而Seq2Seq模型的基本思想非常简单一一使用一个**循环神经网络读取输入句子**，将整个句子的信息**压缩到一个固定维度**（注意是固定维度，下文的注意力集中机制将在此做文章）的编码中；再使用**另一个循环神经网络读取这个编码**，将其**解压为目标语言的一个句子**。这两个循环神经网络分别称为编码器（Encoder）和解码器（Decoder），这就是 encoder-decoder框架的由来。如下图所示：
+Encoder-Decoder框架是**机器翻译**模型的产物，其于2014年在**Seq2Seq**循环神经网络中首次提出。Seq2Seq模型的基本思想非常简单一一使用一个**循环神经网络读取输入句子**，将整个句子的信息**压缩到一个固定维度**（注意是固定维度，下文的注意力集中机制将在此做文章）的编码中；再使用**另一个循环神经网络读取这个编码**，将其**解压为目标语言的一个句子**。这两个循环神经网络分别称为编码器（Encoder）和解码器（Decoder），这就是 encoder-decoder框架的由来。如下图所示：
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-057f266dbfa98cd795b20f722661a78c_720w.webp" alt="img" style="zoom:80%;" />
 
-Decoder：根据 $x$ 的**中间语义表示** $c$ 和**已经生成**的 $y_1, y_2, \ldots, y_{i-1}$ 来**生成 $i$ 时刻**的 $y_i, y_i=g\left(c, y_1, y_2, \ldots, y_{i-1}\right)$ 。解码器部分的结构与一般的语言模型几乎完全相同: 输入为单词的词向量，输出为softmax层产生的单词概率，损失函数为log perplexity。事实上，解码器可以理解为一个以输入编码为前提的语言模型。语言模型中使用的一些技巧，如共享softmax层和词向量的参数，均可以直接应用到 Seq2Seq模型的解码器中。
+Decoder：根据 $x$ 的**中间语义表示** $c$ 和**已经生成**的 $y_1, y_2, \ldots, y_{i-1}$ 来**生成 $i$ 时刻**的 $y_i, y_i=g\left(c, y_1, y_2, \ldots, y_{i-1}\right)$ 。解码器部分的结构与一般的语言模型几乎完全相同: 输入为单词的词向量，输出为softmax层产生的单词概率，损失函数为log perplexity。事实上，解码器可以理解为一个以输入编码为前提的语言模型。
 
 Encoder：对输入序列 $x$ 进行编码，通过**非线性变换**转化为中间语义表示 $c, c=F\left(x_1, x_2, \ldots, x_m\right)$ 。编码器部分网络结构更为简单。它与解码器一样拥有**词向量层和循环神经网络**，但是由于在编码阶段并未输出最终结果，因此不**需要softmax层**。
 
@@ -114,13 +114,13 @@ Attention Mechanism最早引入至自然语言中是为解决机器翻译中随*
 
 **机器翻译问题**本质上可以看做是**编码解码问题**，即将句子编码为向量然后解码为翻译内容。早期的处理方法一般是将句子拆分为一些小的片段分别单独进行处理，深度学习通过构建一个大型的神经网络对同时考虑整个句子内容，然后给出翻译结果。其网络结构主要包括**编码和解码两个部分**，如双向RNN网络。
 
-**编码器**将一个句子**编码为固定长度的向量**，而解码器则负责进行解码操作。然而实验表明这种做法随着句子长度的增加，其性能将急剧恶化，这主要是因为**用固定长度的向量去概括长句子的所有语义细节十分困难**。为克服这一问题，Neutral Machine Translation by Jointly Learning to Align and Translate文中提出每次读取整个句子或段落，通过**自适应的选择**编码向量的**部分相关语义细节片段**进行解码翻译的方案。即对于整个句子，每次选择相关**语义信息最集中**的部分同时考虑**上下文信息**和**相关的目标词出现概率**进行翻译。注意力集中机制（Attention Mechanism）（本质上是加权平均形成上下文向量），这在长句子的处理中得到了广泛的应用。
+**编码器**将一个句子**编码为固定长度的向量**，而**解码器则负责进行解码操作**。然而实验表明这种做法随着句子长度的增加，其性能将急剧恶化，这主要是因为**用固定长度的向量去概括长句子的所有语义细节十分困难**。
+
+为克服这一问题，Neutral Machine Translation by Jointly Learning to Align and Translate文中提出每次读取整个句子或段落，通过**自适应的选择**编码向量的**部分相关语义细节片段**进行解码翻译的方案。即对于整个句子，每次选择相关**语义信息最集中**的部分同时考虑**上下文信息**和**相关的目标词出现概率**进行翻译。注意力集中机制（Attention Mechanism）（本质上是**加权平均**形成上下文向量），这在长句子的处理中得到了广泛的应用。
 
 注意力机制的主要亮点在于对于**seq2seq**模型中**编码器将整个句子压缩为一个固定长度的向量** $c$ ，而当句子**较长时**其很难保存足够的语义信息，而**Attention**允许解码器根据当前**不同的翻译内容**，查阅输入句子的**部分不同的单词或片段**，以提高每个词或者片段的翻译精确度。
 
 一个自我关注模块接受n个输入并返回n个输出。这个模块中发生了什么?用外行人的话来说，自我注意机制允许**输入相互作用**(“自我”)，并**发现他们应该更关注谁**(“注意”)。这些输出是这些交互作用和注意力分数的总和。
-
-
 
 具体做法为解码器在每一步的解码过程中，将**查询编码器的隐藏状态**。对于整个输入序列计算**每一位置** (每一片段)与**当前翻译内容**的**相关程度，即权重**。再根据这个权重对**各输入位置的隐藏状态**进行**加权平均**得到 "context" 向量 (Encoder-Decoder框架向量 $c$ )，该结果包含了**与当前翻译内容最相关的原文信息**。同时在**解码下一个单词**时，将**context作为额外信息输入**至RNN中，这样网络可以时刻读取原文中最相关的信息，而不必完全依赖于上一时刻的隐藏状态。Attention本质上是通过加权平均，计算可变的上下文向量 $c$ 。
 
@@ -130,16 +130,60 @@ Attention Mechanism最早引入至自然语言中是为解决机器翻译中随*
 
 ![img](https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-babcc3f177f9b39600ec2251232e058b_720w.webp)
 
-其中，第 $j$ 时刻的 context $j$ 计算如下:
+对比Attention和seq2seq可以发现主要有两点差别: 
+
+(1) Attention编码器采用了一个双向循环网络。虽然seq2seq模型也可以使用双向循环网络作为编码器，但是在注意力机制中，这一设计必不可少。其主要是因为解码器通过注意力查询一个单词时，通常需要知道该单词周围的部分信息，而双向RNN通常能实现这一要求。
+
+(2) Attention中取消了**编码器和解码器之间的连接**，**解码器完全依赖于注意力机制获取原文信息**。取消这一连接使得编码器和解码器可以自由选择模型。例如它们可以选择不同层数、不同维度、不同结构的循环神经网络，可以在编码器中使用双向LSTM，而在解码器使用单向LSTM，甚至可以用卷积网络作为编码器、用循环神经网络作为解码器等。
+
+### **Transformer**
+
+为实现并行
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-d86a7ccbfe907f51f639f8fc60f2ab71_720w.webp" alt="img" style="zoom:80%;" />
+
+上图为Transformer的整体结构框架，接下来我们进行详细介绍。
 $$
-\begin{aligned}
-& \alpha_{i j}=\frac{\exp \left(e\left(h_i, s_j\right)\right)}{\sum_i \exp \left(e\left(h_i, s_j\right)\right)} \\
-& e(h, s)=U \tanh (V h+W s) \\
-& \text { context }_j=\sum_i \alpha_{i, j} h_i
-\end{aligned}
+\begin{gathered}
+\operatorname{Attention}(Q, K, V)=\operatorname{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V, Q \rightarrow R^{n \times d k}, K \rightarrow R^{m \times d k}, V \\
+\rightarrow R^{m \times d v}
+\end{gathered}
 $$
 
-上式中， $U, V, W$ 为模型参数。 $h_i$ 表示编码器在第 $i$ 个单词上的输出， $s_j$ 为编码器预测第 $j$个单词的状态， $\alpha$ 为通过Softmax计算的权值， $e(h, s)$ 为计算原文各单词与当前解码器状态的 "相关度" 函数，其构成了包含一个隐藏层的全连接神经网络。
+上式中， $\sqrt{d_k}$ 为scale factor主要用于**限制函数内积**的大小，以防止其进入Softmax函数的**饱和区网络收敛较慢**。
+
+(1) Self-Attention
+
+当我们将Q, K, V均替换为输入序列X时，其即为Self-Attention机制。我们可以看出Self-Attention其本质是在寻找序列内部的联系，可以将其理解为在进行句法、语义分析。此外Self-Attention可以摆脱句子长度的限制，无视词与词之间的距离，直接计算依赖关系，从而学习一个句子的内部结构。
+
+(2) Multi-Head Attention
+
+Multi-Head Attention其本质为多个独立、平行的Attention concat而来，通过多个独立的Attention的简单拼接我们可以获得不同子空间上的相关信息。
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-4bda18379d1abe882065470b8bf0957c_720w.webp" alt="img" style="zoom: 80%;" />
+
+### **GPT**
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240205225229961.png" alt="image-20240205225229961" style="zoom: 33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240205225835020.png" alt="image-20240205225835020" style="zoom:33%;" />
+
+先解释 one-shot。公司门禁用了人脸识别，你只提供一张照片，门禁就能认识各个角度的你，这就是 one-shot。可以把 one-shot 理解为**用 1 条数据 finetune 模型**。在人脸识别场景里，one-shot 很常见。
+
+zero-shot 与 few-shot，回到 NLP 场景。用 wikipedia、新闻等，训练一个 GPT 模型，直接拿来做对话任务，这个就是 zero-shot。然后，发现胡说八道有点多，找了一些人标注了少量优质数据喂进去，这就是 few-shot。
+
+chatGPT 的发展史，就是从 zero-shot 到 few-shot。
+
+1. 背景。GPT-3 之前，跟 Bert 是两条路线的竞争关系。
+2. GPT-2 是 zero-shot。效果没有超过 bert，又想发 paper，就把自己的卖点定义为 **zero-shot**（方法创新），即**完全的无监督学习**，论文的题目：Language Models are **Unsupervised Multitask** Learners。
+3. GPT-3 是 few-shot。效果比 bert 好，不用找学术方法的卖点了，而且，zero-shot 做产品的性价比确实不高，换成了 **few-shot**，也就是**找了一些人做标注**。论文的题目：Language Models are **Few-Shot** Learners。
+4. chatGPT 是 HFRL。GPT-3 之后的问题是：few-shot 时到底 shot 啥（标注哪些数据）？他们跟强化学习结合起来，也就是 human feedback reenforcement learning，俗称 HFRL。也就是 chatGPT 的核心技术。HRFL 这套方法，本质目的是：如何把机器的知识与人的知识对齐。然后开创了一个新的方向，叫 alignment。
+
+AR模型，代表作GPT，从**左往右学习**的模型。AR模型从一系列time steps中学习，并将**上一步的结果作为回归模型的输入**，以预测下一个time step的值。AR模型通常用于**生成式任务**，在长文本的生成能力很强，比如自然语言生成（NLG）领域的任务：摘要、翻译或抽象问答。
+
+刚刚提到，AR模型会观察之前time steps的内在联系，用以预测下一个time step的值。如果两个变量朝着同一方向变化，比如同时增加或减少，则是正相关的；若变量朝着相反的方向变化，比如一个增加另一个减少，则是负相关的。无论是什么样的变化方式，我们都可以量化输出与之前变量的关系。这种**相关性（正相关 or 负相关）越高**，过去预测未来的可能性就越大；在深度学习训练过程中，对应的模型**权重也就越高**。由于这种相关性是在过去time steps中，变量与其自身之间的相关性，因此也称为自相关性（autocorrelation）。此外，如果每个变量与输出变量几乎没有相关性，则可能无法预测。
+
+TBD
 
 ## **References**
 
@@ -150,3 +194,7 @@ $$
 [白话机器学习-Encoder-Decoder框架 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/507798134)
 
 [从RNN、LSTM到Encoder-Decoder框架、注意力机制、Transformer - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/50915723)
+
+[Few-Shot, Zero-Shot & One-shot 的通俗理解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/624793654)
+
+[一文读懂GPT家族和BERT的底层区别——自回归和自编码语言模型详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/625714067)
