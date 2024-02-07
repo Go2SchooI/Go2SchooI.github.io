@@ -16,7 +16,7 @@ This series is expected to consist of a relatively small number of posts, with t
 
 ## **Attention**
 
-详细课程地址：[10.【李宏毅机器学习2021】自注意力机制 (Self-attention) (上)_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1v3411r78R?p=1&vd_source=8a1fa40e08f3ead438b9bc465bd04915)， 课程笔记[Self-attention笔记](https://go2schooi.github.io/self_v7.pdf)。
+详细课程地址：[10.【李宏毅机器学习2021】自注意力机制 (Self-attention) (上)_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1v3411r78R?p=1&vd_source=8a1fa40e08f3ead438b9bc465bd04915)， 课程笔记[Self-attention笔记](https://go2schooi.github.io/_papers/self_v7.pdf)。
 
 简单的举例理解：[注意力机制的本质Self-Attention Transformer QKV矩阵_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1dt4y1J7ov/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=8a1fa40e08f3ead438b9bc465bd04915)
 
@@ -24,13 +24,13 @@ This series is expected to consist of a relatively small number of posts, with t
 
 ## **Transformer**
 
-详细课程地址：[13.【李宏毅机器学习2021】Transformer (下)_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1v3411r78R/?p=4&spm_id_from=pageDriver&vd_source=8a1fa40e08f3ead438b9bc465bd04915)，课程笔记[**Transformer**笔记](https://go2schooi.github.io/seq2seq_v9.pdf)；
+详细课程地址：[13.【李宏毅机器学习2021】Transformer (下)_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1v3411r78R/?p=4&spm_id_from=pageDriver&vd_source=8a1fa40e08f3ead438b9bc465bd04915)，课程笔记[**Transformer**笔记](https://go2schooi.github.io/_papers/seq2seq_v9.pdf)；
 
 补充视频课程：[李沐Transformer论文逐段精读【论文精读】_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1pu411o7BE/?spm_id_from=333.999.top_right_bar_window_history.content.click&vd_source=8a1fa40e08f3ead438b9bc465bd04915)
 
 ## **GPT**
 
-详细课程地址：[李沐GPT，GPT-2，GPT-3 论文精读【论文精读】_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1AF411b7xQ/?spm_id_from=333.788&vd_source=8a1fa40e08f3ead438b9bc465bd04915)，课程笔记[**GPT1**笔记](https://go2schooi.github.io/GPT1.pdf)，[**GPT2**笔记](https://go2schooi.github.io/GPT2.pdf)，[**GPT3**笔记](https://go2schooi.github.io/GPT3.pdf)
+详细课程地址：[李沐GPT，GPT-2，GPT-3 论文精读【论文精读】_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1AF411b7xQ/?spm_id_from=333.788&vd_source=8a1fa40e08f3ead438b9bc465bd04915)，课程笔记[**GPT1**笔记](https://go2schooi.github.io/_papers/GPT1.pdf)，[**GPT2**笔记](https://go2schooi.github.io/_papers/GPT2.pdf)，[**GPT3**笔记](https://go2schooi.github.io/_papers/GPT3.pdf)
 
 ## **Concept**
 
@@ -389,6 +389,18 @@ chatGPT 的发展史，就是从 zero-shot 到 few-shot。
 AR模型，代表作GPT，从**左往右学习**的模型。AR模型从一系列time steps中学习，并将**上一步的结果作为回归模型的输入**，以预测下一个time step的值。AR模型通常用于**生成式任务**，在长文本的生成能力很强，比如自然语言生成（NLG）领域的任务：摘要、翻译或抽象问答。
 
 刚刚提到，AR模型会观察**之前time steps的内在联系**，用以预测下一个time step的值。如果两个变量朝着同一方向变化，比如同时增加或减少，则是正相关的；若变量朝着相反的方向变化，比如一个增加另一个减少，则是负相关的。无论是什么样的变化方式，我们都可以量化输出与之前变量的关系。这种**相关性（正相关 or 负相关）越高**，过去预测未来的可能性就越大；在深度学习训练过程中，对应的模型**权重也就越高**。由于这种相关性是在过去time steps中，变量与其自身之间的相关性，因此也称为自相关性（autocorrelation）。此外，如果每个变量与输出变量几乎没有相关性，则可能无法预测。
+
+AR模型利用上/下文词，通过估计文本语料库的概率分布，预测下一个词。
+
+给定一个文本序列， $$x=\left(x_1, \ldots x_T\right)$$ 。AR模型可以将**似然因式分解**为
+
+前向连乘: $p(x)=\prod_{t=1}^T p\left(x_t \mid x_{<t}\right)$
+
+或者后向连乘: $p(x)=\prod_{t=T}^1 p\left(x_t \mid x_{>t}\right)$ 。
+
+我们知道，训练参数模型 (比如神经网络) ，是用来拟合条件概率分布的。AR语言模型仅仅是单向编码的 (前向或后向)，因此它在建模双向上下文时，效果不佳。下图清晰解释了AR模型的前向/后向性。
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-eec5311e9b34be722e195f28d384d1df_720w.webp" alt="img" style="zoom:67%;" />
 
 
 
