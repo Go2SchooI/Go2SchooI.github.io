@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Paper Read 6 - A Novel QP-Based Kinematic Redundancy Resolution Method With Joint Constraints Satisfaction"
-date:   2024-1-29 17:14:00 +0800
+date:   2024-1-22 17:14:00 +0800
 tags:
 - Manipulator
 - Kinematics
