@@ -132,7 +132,7 @@ PaLM-E是一种生成模型，基于多模型句子作为输入**生成文本**�
 
 ### Vision Transformer (ViT)
 
-如果传感器的观测结果是**图像类数据**，一般来说图像类数据也是最常见的，直接使用比较成熟的 **ViT 模型**进行编码，在本文中 ViT 模型的尺寸选取 4B 和 22B 这两个模型。ViT $$\tilde{\phi}_{\mathrm{ViT}}$$ 是一种将图像 $$I$$ 映射为多个token嵌入 $\tilde{x}_{1: m}=\tilde{\phi}_{\mathrm{ViT}}(I) \in \mathbb{R}^{m \times \tilde{k}}$ 的Transformer体系结构。另外，在ViT的基础上，又有人提出了 TokenLearner 结构，加上该结构之后，既降低了计算复杂度，又提升了指标，所以在本文中也会尝试这种结构。综上，本文在对图像类的输入进行编码时会尝试以下几种方案：
+如果传感器的观测结果是**图像类数据**，一般来说图像类数据也是最常见的，直接使用比较成熟的 **ViT 模型**进行编码，在本文中 ViT 模型的尺寸选取 4B 和 22B 这两个模型。ViT $$\tilde{\phi}_{\mathrm{ViT}}$$ 是一种将图像 $$I$$ 映射为多个token嵌入 $$\tilde{x}_{1: m}=\tilde{\phi}_{\mathrm{ViT}}(I) \in \mathbb{R}^{m \times \tilde{k}}$$ 的Transformer体系结构。另外，在ViT的基础上，又有人提出了 TokenLearner 结构，加上该结构之后，既降低了计算复杂度，又提升了指标，所以在本文中也会尝试这种结构。综上，本文在对图像类的输入进行编码时会尝试以下几种方案：
 
 - ViT-4B
 - ViT-22B
@@ -140,13 +140,14 @@ PaLM-E是一种生成模型，基于多模型句子作为输入**生成文本**�
 
 > TokenLearner简介：由于图像类数据维度是2维的，如果直接使用像素点进行编码的话一张512*512的图片编码之后形成的token序列就变得非常长，而transformer架构对长序列的运算速度非常慢。针对这个问题，Google提出了TokenLearner方法，该方法能够**自适应的学习输入图片或视频中的重要区域**，然后主要对这些重要区域进行tokenize，以达到只需要少量的token就足以表征所有的视觉特征的目的。
 
-需要注意的是，**ViT嵌入的维数与语言模型的维数不一定相同**。因此，将每个嵌入投影到 $x_i=\phi_{\mathrm{ViT}}(I)_i=\psi\left(\tilde{\phi}_{\mathrm{ViT}}(I)_i\right)$ 中， $\psi$ 是一个学习的仿射变换。
+需要注意的是，**ViT嵌入的维数与语言模型的维数不一定相同**。因此，将每个嵌入投影到 $$x_i=\phi_{\mathrm{ViT}}(I)_i=\psi\left(\tilde{\phi}_{\mathrm{ViT}}(I)_i\right)$$ 中， $$\psi$$ 是一个学习的仿射变换。
 
 ### Projector
 
 需要注意的是，提到的会使用 ViT 模型做图像数据的编码器，这里的 ViT 模型是之前已经预训练好的，那么**没有办法保证** ViT 模型输出的向量维度与文本token的**嵌入向量维度是相同**的。
 
 为了解决上述问题，就需要在编码器的后面有一个**维度转换的模块**，该模块的作用是将原始编码器输出的各种不同的维度都映射到相同的维度上。将该模块称为 Projector，使用符号 $\psi$ 表示。为了方便后续描述，对编码器（Encoder）也给一个符号，使用符号 $\phi$ 表示。有了这些符号之后，整个编码部分的公式如下:
+
 $$
 x_i= \begin{cases}\text { embedding }\left(w_i\right) & \text { if position } i \text { is a text token } \\ \psi\left(\phi\left(O_j\right)\right)_i & \text { if position } i \text { is observation from sensor }\end{cases}
 $$
