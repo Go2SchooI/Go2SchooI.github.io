@@ -413,20 +413,20 @@ AR模型利用上/下文词，通过估计文本语料库的概率分布，预�
 
 Concept:
 
-[万字长文——这次彻底了解LLM大语言模型-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/2368425)
+[1] [万字长文——这次彻底了解LLM大语言模型-腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/2368425)
 
-[LLM面面观之Prefix LM vs Causal LM - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/672257397)
+[2] [LLM面面观之Prefix LM vs Causal LM - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/672257397)
 
 Note:
 
-[白话机器学习-Attention - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/508089056)
+[3] [白话机器学习-Attention - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/508089056)
 
-[白话机器学习-Self Attention - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/508422850)
+[4] [白话机器学习-Self Attention - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/508422850)
 
-[白话机器学习-Encoder-Decoder框架 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/507798134)
+[5] [白话机器学习-Encoder-Decoder框架 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/507798134)
 
-[从RNN、LSTM到Encoder-Decoder框架、注意力机制、Transformer - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/50915723)
+[6] [从RNN、LSTM到Encoder-Decoder框架、注意力机制、Transformer - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/50915723)
 
-[Few-Shot, Zero-Shot & One-shot 的通俗理解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/624793654)
+[7] [Few-Shot, Zero-Shot & One-shot 的通俗理解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/624793654)
 
-[一文读懂GPT家族和BERT的底层区别——自回归和自编码语言模型详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/625714067)
+[8] [一文读懂GPT家族和BERT的底层区别——自回归和自编码语言模型详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/625714067)
