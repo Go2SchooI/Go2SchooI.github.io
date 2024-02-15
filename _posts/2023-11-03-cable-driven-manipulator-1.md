@@ -11,6 +11,12 @@ toc:  true
 
 Based on the overall needs and design performance index requirements of the cable-driven manipulator, the joints are assigned as shoulder, elbow and wrist. The shoulder and wrist joints include 3-DOF in pitch, yaw, and rotation, and the elbow joint is responsible for 1-DOF in pitch, and the shoulder, elbow, and wrist joints are connected with each other to form the overall arm.
 
+## 7-DOF Manipulator
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240215133402617.png" alt="image-20240215133402617" style="zoom:67%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240215131203513.png" alt="image-20240215131203513" style="zoom:50%;" />
+
 ## Shoulder Mechanism
 
 ### Paper
