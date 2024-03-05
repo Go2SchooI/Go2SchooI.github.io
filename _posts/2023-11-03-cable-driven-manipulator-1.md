@@ -45,6 +45,8 @@ V2.0
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240101165016429.png" alt="image-20240101165016429" style="zoom:33%;" />
 
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240226230727724.png" alt="image-20240226230727724" style="zoom: 33%;" />
+
 ## Elbow Mechanism
 
 ### Paper
@@ -196,3 +198,5 @@ V2.0
 wc = 30; lc = 85; ho = 5;
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240115023328968.png" alt="image-20240115023328968" style="zoom: 33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240226231850191.png" alt="image-20240226231850191" style="zoom: 50%;" />
