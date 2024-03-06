@@ -26,15 +26,15 @@ math: true
 
 答案是否定的，这里存在**复合误差 (compounding errors)**，训练好的**策略模型** $\pi_\theta$ 执行的**轨迹**和**训练轨迹**的误差会随时间的增加而越变越大，用公式表示即$E[$errors$] \leq \varepsilon(T+(T-1)+(T-2)+\ldots+1) \propto \varepsilon T^2 \quad(\varepsilon$代表在 $\mathrm{t}$ 时刻 $\mathrm{c}$ 误差的概率，在每个时刻 $\mathrm{T} ， E[$ errors $] \leq \varepsilon T)$ ，具体效果见下图:
 
-<img src="https://pic2.zhimg.com/80/v2-2a16ce7ecf9320579bb59c3ca55039c9_720w.webp" alt="img" style="zoom: 67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-2a16ce7ecf9320579bb59c3ca55039c9_720w.webp" alt="img" style="zoom: 67%;" />
 
 For a human, we take **corrective actions** when we drift **off-course**. Let’s suppose we want to drive straight in an intersection. Let’s say we are slightly off-course to the left. As a human, we take corrective action to steer back to the right.
 
-<img src="https://miro.medium.com/v2/resize:fit:875/1*mK9essFsN9VwEiuP0XKQtA.jpeg" alt="img" style="zoom: 50%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306213827797.png" alt="image-20240306213827797" style="zoom:80%;" />
 
 collection expect demonstrations：费时费力，还需要大量数据样本进行监督学习训练。此外，**只能收集到好的示范，会导致事故的示范很难收集**。
 
-<img src="https://pic2.zhimg.com/v2-e49eb96809b3ba82ae7d2b26b392cd59_b.webp?consumer=ZHI_MENG" alt="img" style="zoom:67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-e49eb96809b3ba82ae7d2b26b392cd59_b.webp" alt="img" style="zoom:67%;" />
 
 ## 数据增广（Data Augmentation）
 
@@ -42,7 +42,7 @@ collection expect demonstrations：费时费力，还需要大量数据样本进
 
 为了解决误差随时间越来越大的问题，可以采用**数据增广（Data Augmentation）**方法，如下图，这是一个端对端的自动驾驶解决方案（NVIDIA 2016），汽车装配了左右两侧的摄像头与中央摄像头来获取当前观测的环境，并且能够通过 Back propagation 使其从错误状态中恢复。它在**训练模型前人为地调整了环境不好时汽车的运动动作**，另外，摄像头图像的识别采用的是卷积神经网络。
 
-<img src="https://pic2.zhimg.com/v2-b74420ad932e5a8af6a364e58b68ec41_b.webp?consumer=ZHI_MENG" alt="img" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-b74420ad932e5a8af6a364e58b68ec41_b.webp" alt="img" style="zoom:80%;" />
 
 如果我们能够获取大量的训练数据形成一个**合适的状态概率分布或者说样本空间**，从而得到一个很好的策略模型同样能直接地解决这个问题。但这往往不太现实，因为需要耗费的成本太大。起初大部分研究者也几乎全在研究如何**优化策略减少误差**，并提出了很多方法，但都不是十分有效。
 
@@ -60,9 +60,9 @@ collection expect demonstrations：费时费力，还需要大量数据样本进
 4. 聚合 (Aggregate) $: \mathcal{D} \leftarrow \mathcal{D} \cup \mathcal{D}_\pi$
 5. 跳到步骤 1
 
-<img src="https://miro.medium.com/v2/resize:fit:875/1*RkCKUyRW68fAuysDgWhuMA.png" alt="img" style="zoom:67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306213805266.png" alt="image-20240306213805266" style="zoom:80%;" />
 
-![img](https://pic1.zhimg.com/v2-cdf2eceb96c56c4c41740f3e24ce8df8_b.webp?consumer=ZHI_MENG)
+![img](https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-cdf2eceb96c56c4c41740f3e24ce8df8_b.webp)
 
 对模仿学习的应用场景而言，在仅仅使用模仿学习算法本身时，没有具体的理论去说明模仿学习什么时候表现好，什么时候表现不好，但很多时候都得不到很好的效果。它通常在下面几种情况里表现很好：
 
@@ -76,33 +76,33 @@ collection expect demonstrations：费时费力，还需要大量数据样本进
 
 *A Machine Learning Approach to Visual Perception of Forest Trails for Mobile Robots*
 
-![image-20240306161851171](C:\Users\86152\AppData\Roaming\Typora\typora-user-images\image-20240306161851171.png)
+![image-20240306161851171](https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306161851171.png)
 
 案例二使用了前面提到的 DAgger 方法，图中红线的位置是每个状态的标记，第三步即人工拖拽红线到合适的位置。
 
 *Learning Transferable Policies for Monocular Reactive MAV Control*
 
-<img src="C:\Users\86152\AppData\Roaming\Typora\typora-user-images\image-20240306162308388.png" alt="image-20240306162308388" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306162308388.png" alt="image-20240306162308388" style="zoom:80%;" />
 
 
 
 从上述步骤中，我们可以看到 DAgger 最大的问题是第三步，第三步需要**人为地去打标记**，这是没有人愿意干的工作。那「自动」地办法代替人完成这个工作呢？答案是肯定的。
 
-<img src="https://miro.medium.com/v2/resize:fit:875/1*LCUiPE-Y_iI3G6vdyzq5PA.png" alt="img" style="zoom: 67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306213930095.png" alt="image-20240306213930095" style="zoom:80%;" />
 
 In fact, during training, we can deploy **expensive sensors** to measures the states of the environment. With fancy optimization methods, this may plan actions as good as a human and provides expert trajectories for us to imitate. But for the solution to be financially viable, we need to train the **second policy** without those expensive sensors.
 
-![img](https://miro.medium.com/v2/resize:fit:875/1*1JN5qeTNIaGC9o1mmf4Kow.jpeg)
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306213951752.png" alt="image-20240306213951752" style="zoom:67%;" />
 
 For example, our self-driving cars may have LIDAR, RADAR and video cameras **during training to observe the environments**. But for mass production, we may drop the LIDAR because of the cost. Here, we force the **supervised training for a second policy** to imitate the first policy but without the expensive sensors. Those **state information needs to be extracted from the video camera directly**. This is like a divide-and-conquer concept. The first policy focuses on the **complex trajectory optimization** using those extra states and the second one focus on the f**eature extraction**.
 
 ### Partially Observable Markov decision process
 
-<img src="https://miro.medium.com/v2/resize:fit:875/1*nhm5tU6Di_yY2yh5oG204g.jpeg" alt="img" style="zoom: 67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306214007997.png" alt="image-20240306214007997" style="zoom:67%;" />
 
 In one of the previous example, the challenge is not necessary on the missing training data. From the image above, are we trying to go left or go right? In some cases, **objects may be obstructed in the current frame**. Therefore, we cannot determine our action from a single frame only. We need **history information**. There are two possibilities to address this. In the first approach, we **concatenate the last few image frames** and pass it to a CNN to extract features. Alternatively, we use an **RNN** to **record the history information** as below:
 
-<img src="https://miro.medium.com/v2/resize:fit:875/1*9gdENk_iThuoha-ZJK4oOQ.jpeg" alt="img" style="zoom: 67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306214026232.png" alt="image-20240306214026232" style="zoom:80%;" />
 
 ## Imitation Learning v.s. Reinforcement Learning
 
@@ -116,11 +116,11 @@ So can we combine both together? The **expert can tell us where to explore** whi
 
 The first approach **uses the expert demonstration to initialize a policy**. This jumps start the search. Then we **apply RL to improve the policy** and to learn how to deal with those off-course scenarios.
 
-<img src="https://miro.medium.com/v2/resize:fit:875/1*Z3SDl29D1EtP-4A6h8Hlyw.jpeg" alt="img" style="zoom: 67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306214053781.png" alt="image-20240306214053781" style="zoom:80%;" />
 
 While RL can improve the policy, it can still **produce bad decisions** that make the policy worse. As more bad decisions are made, we forget what we learn from the expert demonstration.
 
-<img src="https://miro.medium.com/v2/resize:fit:875/1*iQQ_4CvcC1O7AliuTOLCog.jpeg" alt="img" style="zoom:67%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306214114208.png" alt="image-20240306214114208" style="zoom:80%;" />
 
 ## 结构化预测 (Structured prediction)
 
@@ -181,7 +181,7 @@ One-Shot这个词不出所料地出自Abbeel组，之前的Meta-Learning：An In
 
 依旧是meta的思想，训练集是demonstration数据+当前state，输出是action。
 
-<img src="https://pic1.zhimg.com/v2-9a4e7cea6d96bccd278294bd8ac5266c_b.webp?consumer=ZHI_MENG" alt="img" style="zoom:80%;" />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-9a4e7cea6d96bccd278294bd8ac5266c_b.webp" alt="img" style="zoom:80%;" />
 
 ### Third-Person Imitation Learning,
 
@@ -195,11 +195,11 @@ One-Shot这个词不出所料地出自Abbeel组，之前的Meta-Learning：An In
 
 2017 | [Paper](https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1707.02201.pdf) | Deepmind | [Blog](https://link.zhihu.com/?target=https%3A//deepmind.com/blog/article/producing-flexible-behaviours-simulated-environments)
 
-<img src="https://pic4.zhimg.com/v2-9cd99ea2061ff63153da768b84eca7cf_b.webp?consumer=ZHI_MENG" alt="img"  />
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-9cd99ea2061ff63153da768b84eca7cf_b.webp" alt="img" style="zoom:80%;" />
 
 通过**motion capture(动作捕捉)**获取expert数据，依然是GAIL的结构，只是Discriminator不需要输入action，只需要state即可
 
-![img](https://pic4.zhimg.com/v2-5f08337d4e64191afd0053201d85a6a3_b.webp?consumer=ZHI_MENG)
+<img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-5f08337d4e64191afd0053201d85a6a3_b.webp" alt="img" style="zoom:80%;" />
 
 
 
