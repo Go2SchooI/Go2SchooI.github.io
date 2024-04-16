@@ -211,4 +211,4 @@ One-Shot这个词不出所料地出自Abbeel组，之前的Meta-Learning：An In
 
 3. [模仿学习（Imitation Learning）介绍 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/25688750)
 
-4. [RL — 模仿学习 | by Jonathan Hui | Medium](https://jonathan-hui.medium.com/rl-imitation-learning-ac28116c02fc)
+4. [RL — 模仿学习 by Jonathan Hui](https://jonathan-hui.medium.com/rl-imitation-learning-ac28116c02fc)
