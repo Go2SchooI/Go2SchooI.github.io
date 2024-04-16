@@ -14,17 +14,17 @@ math: true
 
 在传统的强化学习任务中，通常通过**计算累积奖赏**来学习最优策略（policy），这种方式简单直接，而且在可以获得较多训练数据的情况下有较好的表现。然而在**多步决策 (sequential decision)** 中，学习器不能频繁地得到奖励，且这种基于累积奖赏及学习方式存在非常**巨大的搜索空间**。而模仿学习 (Imitation Learning) 的方法经过多年的发展，已经能够很好地解决多步决策问题，在机器人、NLP 等领域也有很多的应用。
 
-模仿学习是指从示教者提供的范例中学习，一般**提供人类专家的决策数据** $\left\{\tau_1, \tau_2, \ldots, \tau_m\right\}$ ，**每个决策包含状态和动作序列** $\tau_i=<s_1^i, a_1^i, s_2^i, a_2^i, \ldots, s_{n_n i+1}^i>$ ，将所有「状态-动作对」抽取出来构造新的集合 $\mathcal{D}=\left\{\left(s_1, a_1\right),\left(s_2, a_2\right),\left(s_3, a_3\right), \ldots\right\}$ 。
+模仿学习是指从示教者提供的范例中学习，一般**提供人类专家的决策数据** $$\left\{\tau_1, \tau_2, \ldots, \tau_m\right\}$$ ，**每个决策包含状态和动作序列** $$\tau_i=<s_1^i, a_1^i, s_2^i, a_2^i, \ldots, s_{n_n i+1}^i>$$ ，将所有「状态-动作对」抽取出来构造新的集合 $$\mathcal{D}=\left\{\left(s_1, a_1\right),\left(s_2, a_2\right),\left(s_3, a_3\right), \ldots\right\}$$ 。
 
 之后就可以**把状态作为特征 (feature)**，**动作作为标记 (label) 进行分类** (对于离散动作) 或**回归** (对于连续动作) 的学习从而得到最优策略模型。模型的训练目标是使**模型生成的状态-动作轨迹分布和输入的轨迹分布相匹配**。从某种角度说，有点像自动编码器 (Autoencoder) 也与目前大火的 GANs 很类似。
 
-在简单自动驾驶任务中 (如下图)，**状态**就是指汽车摄像头所观测到的画面 $o_t$ (很多强化学习任务中 $o_t$ 和 $s_t$ 是可以互换的），**动作**即转向角度。根据人类提供的状态动作对来习得驾驶策略。这个任务也叫做**行为克隆 (Behavior Cloning)**，即作为监督学习的模仿学习。
+在简单自动驾驶任务中 (如下图)，**状态**就是指汽车摄像头所观测到的画面 $$o_t$$ (很多强化学习任务中 $$o_t$$ 和 $$s_t$$ 是可以互换的），**动作**即转向角度。根据人类提供的状态动作对来习得驾驶策略。这个任务也叫做**行为克隆 (Behavior Cloning)**，即作为监督学习的模仿学习。
 
 ![img](https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-ec18c1cb7b7fb9feefb6361e44d5e113_720w.webp)
 
 但是不是我们完成训练后模型就能够有比较好的效果? 
 
-答案是否定的，这里存在**复合误差 (compounding errors)**，训练好的**策略模型** $\pi_\theta$ 执行的**轨迹**和**训练轨迹**的误差会随时间的增加而越变越大，用公式表示即$E[$errors$] \leq \varepsilon(T+(T-1)+(T-2)+\ldots+1) \propto \varepsilon T^2 \quad(\varepsilon$代表在 $\mathrm{t}$ 时刻 $\mathrm{c}$ 误差的概率，在每个时刻 $\mathrm{T} ， E[$ errors $] \leq \varepsilon T)$ ，具体效果见下图:
+答案是否定的，这里存在**复合误差 (compounding errors)**，训练好的**策略模型** $$\pi_\theta$$ 执行的**轨迹**和**训练轨迹**的误差会随时间的增加而越变越大，用公式表示即$$E[$$errors$$] \leq \varepsilon(T+(T-1)+(T-2)+\ldots+1) \propto \varepsilon T^2 \quad(\varepsilon$$代表在 $$\mathrm{t}$$ 时刻 $$\mathrm{c}$$ 误差的概率，在每个时刻 $$\mathrm{T} ， E[$$ errors $$] \leq \varepsilon T)$$ ，具体效果见下图:
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/v2-2a16ce7ecf9320579bb59c3ca55039c9_720w.webp" alt="img" style="zoom: 67%;" />
 
@@ -52,12 +52,12 @@ collection expect demonstrations：费时费力，还需要大量数据样本进
 
 2010 | [Paper](https://link.zhihu.com/?target=https%3A//www.cs.cmu.edu/~sross1/publications/Ross-AIStats11-NoRegret.pdf) | *A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning*
 
-该方法则将研究目的**从优化策略** $\pi_\theta\left(u_t \mid o_t\right)$ ，即令 $p_{\pi_\theta}\left(o_t\right)$ 趋近 $p_{d a t a}\left(o_t\right)$ ，**转移到增加训练数据**上，即令样本空间更加接近真实样本空间。具体算法如下:
+该方法则将研究目的**从优化策略** $$\pi_\theta\left(u_t \mid o_t\right)$$ ，即令 $$p_{\pi_\theta}\left(o_t\right)$$ 趋近 $$p_{d a t a}\left(o_t\right)$$ ，**转移到增加训练数据**上，即令样本空间更加接近真实样本空间。具体算法如下:
 
-1. 通过数据集 $\mathcal{D}=\left\{\left(o_1, a_1\right),\left(o_2, a_2\right),\left(o_3, a_3\right), \ldots\right\}$ 训练出策略 $\pi_\theta\left(u_t \mid o_t\right)$
-2. 执行 $\pi_\theta\left(u_t \mid o_t\right)$ 得到一个新的数据集 $\mathcal{D}_\pi=\left\{o_1, o_2, o_3, \ldots\right\}$
-3. 人工给 $\mathcal{D}_\pi$ 中的状态标上动作 (action) $u_t$
-4. 聚合 (Aggregate) $: \mathcal{D} \leftarrow \mathcal{D} \cup \mathcal{D}_\pi$
+1. 通过数据集 $$\mathcal{D}=\left\{\left(o_1, a_1\right),\left(o_2, a_2\right),\left(o_3, a_3\right), \ldots\right\}$$ 训练出策略 $$\pi_\theta\left(u_t \mid o_t\right)$$
+2. 执行 $$\pi_\theta\left(u_t \mid o_t\right)$$ 得到一个新的数据集 $$\mathcal{D}_\pi=\left\{o_1, o_2, o_3, \ldots\right\}$$
+3. 人工给 $$\mathcal{D}_\pi$$ 中的状态标上动作 (action) $$u_t$$
+4. 聚合 (Aggregate) $$: \mathcal{D} \leftarrow \mathcal{D} \cup \mathcal{D}_\pi$$
 5. 跳到步骤 1
 
 <img src="https://cdn.jsdelivr.net/gh/Go2SchooI/blogImg@main/img/image-20240306213805266.png" alt="image-20240306213805266" style="zoom:80%;" />
@@ -72,7 +72,7 @@ collection expect demonstrations：费时费力，还需要大量数据样本进
 
 下面是 CS294-112 中提到的模仿学习的两个具体应用：
 
-案例一 (下图) 是通过三个摄像头采集的图像描述 $s_t$ ，人类行走的方向作为 $u_t ， u_t$ 拥有离散的三个量，直走 (straight) 、右转 (right) 和左转 (left)。获得数据后直接作为分类问题 (classification) 进行训练，取得了比较好的效果。
+案例一 (下图) 是通过三个摄像头采集的图像描述 $$s_t$$ ，人类行走的方向作为 $$u_t ， u_t$$ 拥有离散的三个量，直走 (straight) 、右转 (right) 和左转 (left)。获得数据后直接作为分类问题 (classification) 进行训练，取得了比较好的效果。
 
 *A Machine Learning Approach to Visual Perception of Forest Trails for Mobile Robots*
 
@@ -124,7 +124,7 @@ While RL can improve the policy, it can still **produce bad decisions** that mak
 
 ## 结构化预测 (Structured prediction)
 
-**结构化预测问题**由输入空间 $\mathcal{X}$ ，输出空间 $\mathcal{Y} ， \mathcal{X} \times \mathcal{Y}$ 服从的一个固定但未知的分布 $\mathcal{D}$ 和一个非负的损失函数 $l\left(y^*, \hat{y}\right) \rightarrow \mathbb{R} \geq 0$ 组成。其目的是用样本中的数据习得能**最小化损失的映射** $f: \mathcal{X} \rightarrow \mathcal{Y}$ 。下面是使用结构化预测在 Sequence labelling 中的几个样例:
+**结构化预测问题**由输入空间 $$\mathcal{X}$$ ，输出空间 $$\mathcal{Y} ， \mathcal{X} \times \mathcal{Y}$$ 服从的一个固定但未知的分布 $$\mathcal{D}$$ 和一个非负的损失函数 $$l\left(y^*, \hat{y}\right) \rightarrow \mathbb{R} \geq 0$$ 组成。其目的是用样本中的数据习得能**最小化损失的映射** $$f: \mathcal{X} \rightarrow \mathcal{Y}$$ 。下面是使用结构化预测在 Sequence labelling 中的几个样例:
 
 1. Part of speech tagging（语言词性标记）
 
