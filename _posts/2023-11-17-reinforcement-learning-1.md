@@ -3,7 +3,7 @@ layout: post
 title:  "Reinforcement Learning 1 - Value Iteration and Policy Iteration"
 date:   2023-11-17 14:18:13 +0800
 tags:
-- Reinforcement Learning
+- RL
 toc:  true
 math: true
 ---

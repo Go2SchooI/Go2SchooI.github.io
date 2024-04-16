@@ -3,8 +3,7 @@ layout: post
 title:  "Paper Read 7 - Attention Is All You Need"
 date:   2024-2-1 1:18:00 +0800
 tags:
-- Embodied Intelligence
-- NLP
+- ML
 toc:  true
 math: true
 
