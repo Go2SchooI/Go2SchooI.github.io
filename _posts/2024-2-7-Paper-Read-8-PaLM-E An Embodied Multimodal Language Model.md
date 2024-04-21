@@ -293,3 +293,5 @@ TAMP是由**四种 VQA（Visual Question Answering）问题和两种plan问题**
 
 
 论文阅读笔记：[**PaLM-E: An Embodied Multimodal Language Model**](https://go2schooi.github.io/_papers/Palm-e An embodied multimodal language model.pdf)
+
+论文阅读笔记：[**PaLM-E: An Embodied Multimodal Language Model**](https://go2schooi.github.io/Palm-e An embodied multimodal language model.pdf)
